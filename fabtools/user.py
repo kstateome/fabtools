@@ -3,6 +3,8 @@ Users
 =====
 """
 
+import six
+
 from pipes import quote
 import posixpath
 import random
@@ -117,7 +119,7 @@ def create(name, comment=None, home=None, create_home=None, skeleton_dir=None,
     run_as_root('useradd %s' % args)
 
     if ssh_public_keys:
-        if isinstance(ssh_public_keys, basestring):
+        if isinstance(ssh_public_keys, six.string_types):
             ssh_public_keys = [ssh_public_keys]
         add_ssh_public_keys(name, ssh_public_keys)
 
@@ -171,7 +173,7 @@ def modify(name, comment=None, home=None, move_current_home=False, group=None,
         run_as_root('usermod %s' % args)
 
     if ssh_public_keys:
-        if isinstance(ssh_public_keys, basestring):
+        if isinstance(ssh_public_keys, six.string_types):
             ssh_public_keys = [ssh_public_keys]
         add_ssh_public_keys(name, ssh_public_keys)
 

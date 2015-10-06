@@ -5,6 +5,7 @@ Files and directories
 
 from pipes import quote
 import os
+import six
 
 from fabric.api import (
     abort,
@@ -240,7 +241,7 @@ class watch(object):
     """
 
     def __init__(self, filenames, callback=None, use_sudo=False):
-        if isinstance(filenames, basestring):
+        if isinstance(filenames, six.string_types):
             self.filenames = [filenames]
         else:
             self.filenames = filenames

@@ -7,6 +7,7 @@ This module provides tools to manage `SmartOS`_ packages.
 .. _SmartOS: http://smartos.org/
 
 """
+import six
 
 from fabric.api import hide, quiet, run, settings
 
@@ -82,7 +83,7 @@ def install(packages, update=False, yes=None, options=None):
         options = []
     elif isinstance(options, str):
         options = [options]
-    if not isinstance(packages, basestring):
+    if not isinstance(packages, six.string_types):
         packages = " ".join(packages)
     options.append("-y")
     options = " ".join(options)
@@ -106,7 +107,7 @@ def uninstall(packages, orphan=False, options=None):
         options = []
     elif isinstance(options, str):
         options = [options]
-    if not isinstance(packages, basestring):
+    if not isinstance(packages, six.string_types):
         packages = " ".join(packages)
     options.append("-y")
     options = " ".join(options)

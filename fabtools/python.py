@@ -9,7 +9,7 @@ and installing Python packages using the `pip`_ installer.
 .. _pip: http://www.pip-installer.org/
 
 """
-
+import six
 from contextlib import contextmanager
 from distutils.version import StrictVersion as V
 from pipes import quote
@@ -132,7 +132,7 @@ def install(packages, upgrade=False, download_cache=None, allow_external=None,
 
     .. _pip: http://www.pip-installer.org/
     """
-    if isinstance(packages, basestring):
+    if isinstance(packages, six.string_types):
         packages = [packages]
 
     if allow_external in (None, False):

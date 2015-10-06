@@ -6,7 +6,7 @@ This module provides high-level tools for managing Debian/Ubuntu packages
 and repositories.
 
 """
-
+import six
 from fabric.utils import puts
 
 from fabtools.deb import (
@@ -99,7 +99,7 @@ def ppa(name, auto_accept=True, keyserver=None):
     else:
         auto_accept = ''
 
-    if not isinstance(keyserver, basestring) and keyserver:
+    if not isinstance(keyserver, six.string_types) and keyserver:
         keyserver = keyserver[0]
     if keyserver:
         keyserver = '--keyserver ' + keyserver

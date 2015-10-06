@@ -6,6 +6,7 @@ This module provides tools to manage opkg packages
 and repositories.
 
 """
+import six
 
 from fabric.api import hide, run, settings
 
@@ -71,7 +72,7 @@ def install(packages, update=False, options=None):
         update_index()
     if options is None:
         options = []
-    if not isinstance(packages, basestring):
+    if not isinstance(packages, six.string_types):
         packages = " ".join(packages)
     options.append("--verbosity=0")
     options = " ".join(options)
@@ -89,7 +90,7 @@ def uninstall(packages, options=None):
     command = "remove"
     if options is None:
         options = []
-    if not isinstance(packages, basestring):
+    if not isinstance(packages, six.string_types):
         packages = " ".join(packages)
     options = " ".join(options)
     cmd = '%(manager)s %(command)s %(options)s %(packages)s' % locals()

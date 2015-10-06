@@ -9,7 +9,7 @@ using the Portage_ package manager.
 .. _Portage: http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&chap=1
 
 """
-
+import six
 import re
 
 from fabric.api import hide, run, settings
@@ -92,7 +92,7 @@ def install(packages, update=False, options=None):
     options = options or []
     options = " ".join(options)
 
-    if not isinstance(packages, basestring):
+    if not isinstance(packages, six.string_types):
         packages = " ".join(packages)
 
     cmd = '%(manager)s %(options)s %(packages)s' % locals()
@@ -110,7 +110,7 @@ def uninstall(packages, options=None):
     options = options or []
     options = " ".join(options)
 
-    if not isinstance(packages, basestring):
+    if not isinstance(packages, six.string_types):
         packages = " ".join(packages)
 
     cmd = '%(manager)s --unmerge %(options)s %(packages)s' % locals()
